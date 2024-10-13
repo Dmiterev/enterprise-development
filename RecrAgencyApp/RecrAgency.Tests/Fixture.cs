@@ -13,8 +13,8 @@ public class RecruitmentAgencyFixture
     public RecruitmentAgencyFixture()
     {
         // Инициализация соискателей
-        JobSeekers = new List<JobSeeker>
-        {
+        JobSeekers =
+        [
             new JobSeeker
             {
                 Id = 0,
@@ -51,11 +51,11 @@ public class RecruitmentAgencyFixture
                 Education = "Магистр информатики",
                 DesiredSalary = 90000
             }
-        };
+         ];
 
         // Инициализация должностей
-        Positions = new List<Position>
-        {
+        Positions = 
+        [
             new Position
             {
                 Id = 0,
@@ -74,11 +74,11 @@ public class RecruitmentAgencyFixture
                 Section = "Реклама",
                 PositionName = "Маркетолог"
             }
-        };
+        ];
 
         // Инициализация заявок соискателей
-        JobApplications = new List<JobApplication>
-        {
+        JobApplications =
+        [
             new JobApplication
             {
                 Id = 0,
@@ -107,11 +107,11 @@ public class RecruitmentAgencyFixture
                 PositionId = 0,
                 ApplicationDate = new DateTime(2024, 4, 5)
             }
-        };
+        ];
 
         // Инициализация работодателей
-        Employers = new List<Employer>
-        {
+        Employers =
+        [
             new Employer
             {
                 Id = 0,
@@ -126,11 +126,11 @@ public class RecruitmentAgencyFixture
                 ContactPerson = "Игорь Игорев",
                 Phone = "222333444"
             }
-        };
+        ];
 
         // Инициализация заявок работодателей
-        EmployerApplications = new List<EmployerApplication>
-        {
+        EmployerApplications =
+        [
             new EmployerApplication
             {
                 Id = 0,
@@ -149,6 +149,6 @@ public class RecruitmentAgencyFixture
                 OfferedSalary = 75000,
                 ApplicationDate = new DateTime(2024, 2, 15)
             }
-        };
+        ];
     }
 }

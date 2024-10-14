@@ -1,6 +1,4 @@
-using RecrAgency.Domain;
-
-namespace RecruitmentAgency.Tests;
+namespace RecrAgency.Tests;
 
 public class RecruitmentAgencyTest : IClassFixture<RecruitmentAgencyFixture>
 {
@@ -41,7 +39,7 @@ public class RecruitmentAgencyTest : IClassFixture<RecruitmentAgencyFixture>
     [Fact]
     public void ReturnJobSeekersForSpecificEmployerApplication()
     {
-        var employerApplicationId = 1; 
+        var employerApplicationId = 1;
         var employerApplication = _fixture.EmployerApplications.First(ea => ea.Id == employerApplicationId);
         var jobSeekers = _fixture.JobApplications
             .Where(ja => ja.PositionId == employerApplication.PositionId)
@@ -55,7 +53,7 @@ public class RecruitmentAgencyTest : IClassFixture<RecruitmentAgencyFixture>
     public void ReturnApplicationCountBySectionAndPosition()
     {
         var applicationCounts = _fixture.JobApplications
-            .GroupBy(ja => ja.PositionId) 
+            .GroupBy(ja => ja.PositionId)
             .Select(g => new
             {
                 Position = _fixture.Positions.First(p => p.Id == g.Key),

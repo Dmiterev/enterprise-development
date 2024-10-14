@@ -1,6 +1,6 @@
 ﻿using RecrAgency.Domain;
 
-namespace RecruitmentAgency.Tests;
+namespace RecrAgency.Tests;
 
 public class RecruitmentAgencyFixture
 {
@@ -54,7 +54,7 @@ public class RecruitmentAgencyFixture
          ];
 
         // Инициализация должностей
-        Positions = 
+        Positions =
         [
             new Position
             {

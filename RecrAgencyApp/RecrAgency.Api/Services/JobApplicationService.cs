@@ -22,7 +22,6 @@ namespace RecrAgency.Api.Services
                     SeekerId = ja.SeekerId,
                     PositionId = ja.PositionId,
                     ApplicationDate = ja.ApplicationDate
-                    // Добавьте дополнительные поля здесь, если они есть
                 })
                 .ToList();
         }
@@ -36,7 +35,6 @@ namespace RecrAgency.Api.Services
                 SeekerId = jobApplication.SeekerId,
                 PositionId = jobApplication.PositionId,
                 ApplicationDate = jobApplication.ApplicationDate
-                // Добавьте дополнительные поля здесь, если они есть
             };
         }
 
@@ -46,7 +44,7 @@ namespace RecrAgency.Api.Services
             {
                 SeekerId = jobApplicationCreateDto.SeekerId,
                 PositionId = jobApplicationCreateDto.PositionId,
-                ApplicationDate = DateTime.Now // Или передавайте дату из DTO, если нужно
+                ApplicationDate = DateTime.Now 
             };
 
             _context.JobApplications.Add(jobApplication);
@@ -58,7 +56,6 @@ namespace RecrAgency.Api.Services
                 SeekerId = jobApplication.SeekerId,
                 PositionId = jobApplication.PositionId,
                 ApplicationDate = jobApplication.ApplicationDate
-                // Добавьте дополнительные поля здесь, если они есть
             };
         }
 
@@ -69,8 +66,6 @@ namespace RecrAgency.Api.Services
 
             jobApplication.SeekerId = jobApplicationDto.SeekerId;
             jobApplication.PositionId = jobApplicationDto.PositionId;
-            // Если нужно обновить другие поля, добавьте их здесь
-
             _context.SaveChanges();
             return true;
         }

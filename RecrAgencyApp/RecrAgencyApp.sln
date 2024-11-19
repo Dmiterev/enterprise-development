@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecrAgency.Domain", "RecrAg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecrAgency.Tests", "RecrAgency.Tests\RecrAgency.Tests.csproj", "{C8BA6EC7-6DD7-4F53-B4D2-B8A371674170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecrAgency.Api", "RecrAgency.Api\RecrAgency.Api.csproj", "{CF72C329-4EF8-4ADD-8C5F-9CF9ED90671B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecrAgency.Api", "RecrAgency.Api\RecrAgency.Api.csproj", "{CF72C329-4EF8-4ADD-8C5F-9CF9ED90671B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,15 +13,10 @@ public class RecrAgencyContext : DbContext
     public DbSet<JobSeeker> JobSeekers { get; set; }
     public DbSet<EmployerApplication> EmployerApplications { get; set; }
 
-    /// <summary>
-    /// Конструктор для контекста базы данных с опциями.
-    /// </summary>
-    /// <param name="options">Опции для конфигурации контекста.</param>
-    public RecrAgencyContext(DbContextOptions<RecrAgencyContext> options)
+     public RecrAgencyContext(DbContextOptions<RecrAgencyContext> options)
         : base(options)
     {
     }
-
     /// <summary>
     /// Настройка модели базы данных с помощью Fluent API.
     /// </summary>

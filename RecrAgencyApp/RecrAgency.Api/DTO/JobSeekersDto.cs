@@ -1,46 +1,35 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace RecrAgency.Api.DTO;
 
-namespace RecrAgency.Domain;
-
-/// <summary>
-/// Представляет соискателя.
-/// </summary>
-public class JobSeeker
+public class JobSeekersDto
 {
     /// <summary>
     /// Уникальный идентификатор соискателя.
     /// </summary>
-    [Key]
     public int Id { get; set; }
 
     /// <summary>
     /// Полное имя соискателя.
     /// </summary>
-    [Required]
-    public string FullName { get; set; } = string.Empty;
+    public required string FullName { get; set; }
 
     /// <summary>
     /// Контактный телефон соискателя.
     /// </summary>
-    [Required]
-    public string Phone { get; set; } = string.Empty;
+    public required string Phone { get; set; }
 
     /// <summary>
     /// Описание опыта работы соискателя.
     /// </summary>
-    [Required]
-    public string WorkExperience { get; set; } = string.Empty;
+    public required string WorkExperience { get; set; }
 
     /// <summary>
     /// Образование соискателя.
     /// </summary>
-    [Required]
-    public string Education { get; set; } = string.Empty;
+    public required string Education { get; set; }
 
     /// <summary>
     /// Желаемый уровень зарплаты соискателя.
     /// </summary>
-    public decimal DesiredSalary { get; set; } = 0;
-
-    public ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
+    public decimal DesiredSalary { get; set; }
 }
+

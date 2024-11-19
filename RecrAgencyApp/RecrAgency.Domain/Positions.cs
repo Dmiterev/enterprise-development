@@ -1,4 +1,6 @@
-﻿namespace RecrAgency.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RecrAgency.Domain;
 
 /// <summary>
 /// Представляет должность.
@@ -8,15 +10,21 @@ public class Position
     /// <summary>
     /// Уникальный идентификатор должности.
     /// </summary>
+    [Key]
     public int Id { get; set; }
 
     /// <summary>
     /// Раздел, к которому относится должность (IT, финансы, реклама и т.д.).
     /// </summary>
-    public required string Section { get; set; }
+    [Required]
+    public string Section { get; set; } = string.Empty;
+
 
     /// <summary>
     /// Наименование должности.
     /// </summary>
-    public required string PositionName { get; set; }
+    [Required]
+    public string PositionName { get; set; } = string.Empty;
+
+    public ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
 }

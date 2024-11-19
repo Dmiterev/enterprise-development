@@ -1,10 +1,13 @@
-﻿namespace RecrAgency.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RecrAgency.Domain;
 
 /// <summary>
 /// Представляет работодателя.
 /// </summary>
 public class Employer
 {
+    [Key]
     /// <summary>
     /// Уникальный идентификатор работодателя.
     /// </summary>
@@ -13,15 +16,20 @@ public class Employer
     /// <summary>
     /// Название компании.
     /// </summary>
-    public required string CompanyName { get; set; }
+    [Required]
+    public string CompanyName { get; set; } = string.Empty;
 
     /// <summary>
     /// ФИО контактного лица.
     /// </summary>
-    public required string ContactPerson { get; set; }
+    [Required]
+    public string ContactPerson { get; set; } = string.Empty;
 
     /// <summary>
     /// Контактный телефон работодателя.
     /// </summary>
-    public required string Phone { get; set; }
+    [Required]
+    public string Phone { get; set; } = string.Empty;
+
+    public ICollection<EmployerApplication> EmployerApplications { get; set; } = new List<EmployerApplication>();
 }

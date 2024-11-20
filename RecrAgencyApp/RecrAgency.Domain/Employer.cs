@@ -7,10 +7,10 @@ namespace RecrAgency.Domain;
 /// </summary>
 public class Employer
 {
-    [Key]
     /// <summary>
     /// Уникальный идентификатор работодателя.
     /// </summary>
+    [Key]
     public int Id { get; set; }
 
     /// <summary>

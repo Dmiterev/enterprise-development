@@ -2,84 +2,83 @@
 using RecrAgency.Api.Services.Interfaces;
 using RecrAgency.Domain;
 
-namespace RecrAgency.Api.Services
+namespace RecrAgency.Api.Services;
+
+public class EmployerService : IEmployerService
 {
-    public class EmployerService : IEmployerService
+    private readonly RecrAgencyContext _context;
+
+    public EmployerService(RecrAgencyContext context)
     {
-        private readonly RecrAgencyContext _context;
+        _context = context;
+    }
 
-        public EmployerService(RecrAgencyContext context)
-        {
-            _context = context;
-        }
-
-        public IEnumerable<EmployerDto> GetAll()
-        {
-            return _context.Employers
-                .Select(e => new EmployerDto
-                {
-                    Id = e.Id,
-                    CompanyName = e.CompanyName,
-                    ContactPerson = e.ContactPerson,
-                    Phone = e.Phone
-                })
-                .ToList();
-        }
-
-        public EmployerDto? GetById(int id)
-        {
-            var employer = _context.Employers.Find(id);
-            return employer == null ? null : new EmployerDto
+    public IEnumerable<EmployerDto> GetAll()
+    {
+        return _context.Employers
+            .Select(e => new EmployerDto
             {
-                Id = employer.Id,
-                CompanyName = employer.CompanyName,
-                ContactPerson = employer.ContactPerson,
-                Phone = employer.Phone
-            };
-        }
+                Id = e.Id,
+                CompanyName = e.CompanyName,
+                ContactPerson = e.ContactPerson,
+                Phone = e.Phone
+            })
+            .ToList();
+    }
 
-        public EmployerDto Create(EmployerCreateDto employerCreateDto)
+    public EmployerDto? GetById(int id)
+    {
+        var employer = _context.Employers.Find(id);
+        return employer == null ? null : new EmployerDto
         {
-            var employer = new Employer
-            {
-                CompanyName = employerCreateDto.CompanyName,
-                ContactPerson = employerCreateDto.ContactPerson,
-                Phone = employerCreateDto.Phone
-            };
+            Id = employer.Id,
+            CompanyName = employer.CompanyName,
+            ContactPerson = employer.ContactPerson,
+            Phone = employer.Phone
+        };
+    }
 
-            _context.Employers.Add(employer);
-            _context.SaveChanges();
-
-            return new EmployerDto
-            {
-                Id = employer.Id,
-                CompanyName = employer.CompanyName,
-                ContactPerson = employer.ContactPerson,
-                Phone = employer.Phone
-            };
-        }
-
-        public bool Update(int id, EmployerDto employerDto)
+    public EmployerDto Create(EmployerCreateDto employerCreateDto)
+    {
+        var employer = new Employer
         {
-            var employer = _context.Employers.Find(id);
-            if (employer == null) return false;
+            CompanyName = employerCreateDto.CompanyName,
+            ContactPerson = employerCreateDto.ContactPerson,
+            Phone = employerCreateDto.Phone
+        };
 
-            employer.CompanyName = employerDto.CompanyName;
-            employer.ContactPerson = employerDto.ContactPerson;
-            employer.Phone = employerDto.Phone;
+        _context.Employers.Add(employer);
+        _context.SaveChanges();
 
-            _context.SaveChanges();
-            return true;
-        }
-
-        public bool Delete(int id)
+        return new EmployerDto
         {
-            var employer = _context.Employers.Find(id);
-            if (employer == null) return false;
+            Id = employer.Id,
+            CompanyName = employer.CompanyName,
+            ContactPerson = employer.ContactPerson,
+            Phone = employer.Phone
+        };
+    }
 
-            _context.Employers.Remove(employer);
-            _context.SaveChanges();
-            return true;
-        }
+    public bool Update(int id, EmployerDto employerDto)
+    {
+        var employer = _context.Employers.Find(id);
+        if (employer == null) return false;
+
+        employer.CompanyName = employerDto.CompanyName;
+        employer.ContactPerson = employerDto.ContactPerson;
+        employer.Phone = employerDto.Phone;
+
+        _context.SaveChanges();
+        return true;
+    }
+
+    public bool Delete(int id)
+    {
+        var employer = _context.Employers.Find(id);
+        if (employer == null) return false;
+
+        _context.Employers.Remove(employer);
+        _context.SaveChanges();
+        return true;
     }
 }

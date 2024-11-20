@@ -8,10 +8,10 @@ namespace RecrAgency.Domain;
 /// </summary>
 public class JobApplication
 {
-    [Key]
     /// <summary>
     /// Уникальный идентификатор заявки.
     /// </summary>
+    [Key]
     public int Id { get; set; }
 
     /// <summary>

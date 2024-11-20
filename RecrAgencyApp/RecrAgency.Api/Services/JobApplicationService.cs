@@ -2,82 +2,81 @@
 using RecrAgency.Api.Services.Interfaces;
 using RecrAgency.Domain;
 
-namespace RecrAgency.Api.Services
+namespace RecrAgency.Api.Services;
+
+public class JobApplicationService : IJobApplicationService
 {
-    public class JobApplicationService : IJobApplicationService
+    private readonly RecrAgencyContext _context;
+
+    public JobApplicationService(RecrAgencyContext context)
     {
-        private readonly RecrAgencyContext _context;
+        _context = context;
+    }
 
-        public JobApplicationService(RecrAgencyContext context)
-        {
-            _context = context;
-        }
-
-        public IEnumerable<JobApplicationDto> GetAll()
-        {
-            return _context.JobApplications
-                .Select(ja => new JobApplicationDto
-                {
-                    Id = ja.Id,
-                    SeekerId = ja.SeekerId,
-                    PositionId = ja.PositionId,
-                    ApplicationDate = ja.ApplicationDate
-                })
-                .ToList();
-        }
-
-        public JobApplicationDto? GetById(int id)
-        {
-            var jobApplication = _context.JobApplications.Find(id);
-            return jobApplication == null ? null : new JobApplicationDto
+    public IEnumerable<JobApplicationDto> GetAll()
+    {
+        return _context.JobApplications
+            .Select(ja => new JobApplicationDto
             {
-                Id = jobApplication.Id,
-                SeekerId = jobApplication.SeekerId,
-                PositionId = jobApplication.PositionId,
-                ApplicationDate = jobApplication.ApplicationDate
-            };
-        }
+                Id = ja.Id,
+                SeekerId = ja.SeekerId,
+                PositionId = ja.PositionId,
+                ApplicationDate = ja.ApplicationDate
+            })
+            .ToList();
+    }
 
-        public JobApplicationDto Create(JobApplicationCreateDto jobApplicationCreateDto)
+    public JobApplicationDto? GetById(int id)
+    {
+        var jobApplication = _context.JobApplications.Find(id);
+        return jobApplication == null ? null : new JobApplicationDto
         {
-            var jobApplication = new JobApplication
-            {
-                SeekerId = jobApplicationCreateDto.SeekerId,
-                PositionId = jobApplicationCreateDto.PositionId,
-                ApplicationDate = DateTime.Now 
-            };
+            Id = jobApplication.Id,
+            SeekerId = jobApplication.SeekerId,
+            PositionId = jobApplication.PositionId,
+            ApplicationDate = jobApplication.ApplicationDate
+        };
+    }
 
-            _context.JobApplications.Add(jobApplication);
-            _context.SaveChanges();
-
-            return new JobApplicationDto
-            {
-                Id = jobApplication.Id,
-                SeekerId = jobApplication.SeekerId,
-                PositionId = jobApplication.PositionId,
-                ApplicationDate = jobApplication.ApplicationDate
-            };
-        }
-
-        public bool Update(int id, JobApplicationDto jobApplicationDto)
+    public JobApplicationDto Create(JobApplicationCreateDto jobApplicationCreateDto)
+    {
+        var jobApplication = new JobApplication
         {
-            var jobApplication = _context.JobApplications.Find(id);
-            if (jobApplication == null) return false;
+            SeekerId = jobApplicationCreateDto.SeekerId,
+            PositionId = jobApplicationCreateDto.PositionId,
+            ApplicationDate = DateTime.Now 
+        };
 
-            jobApplication.SeekerId = jobApplicationDto.SeekerId;
-            jobApplication.PositionId = jobApplicationDto.PositionId;
-            _context.SaveChanges();
-            return true;
-        }
+        _context.JobApplications.Add(jobApplication);
+        _context.SaveChanges();
 
-        public bool Delete(int id)
+        return new JobApplicationDto
         {
-            var jobApplication = _context.JobApplications.Find(id);
-            if (jobApplication == null) return false;
+            Id = jobApplication.Id,
+            SeekerId = jobApplication.SeekerId,
+            PositionId = jobApplication.PositionId,
+            ApplicationDate = jobApplication.ApplicationDate
+        };
+    }
 
-            _context.JobApplications.Remove(jobApplication);
-            _context.SaveChanges();
-            return true;
-        }
+    public bool Update(int id, JobApplicationDto jobApplicationDto)
+    {
+        var jobApplication = _context.JobApplications.Find(id);
+        if (jobApplication == null) return false;
+
+        jobApplication.SeekerId = jobApplicationDto.SeekerId;
+        jobApplication.PositionId = jobApplicationDto.PositionId;
+        _context.SaveChanges();
+        return true;
+    }
+
+    public bool Delete(int id)
+    {
+        var jobApplication = _context.JobApplications.Find(id);
+        if (jobApplication == null) return false;
+
+        _context.JobApplications.Remove(jobApplication);
+        _context.SaveChanges();
+        return true;
     }
 }
